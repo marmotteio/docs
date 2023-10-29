@@ -1,0 +1,69 @@
+---
+title: Quick-Deploy
+description: Get Marmotte up and running effortlessly using Docker.
+---
+
+Welcome to the Quick-Deploy guide for Marmotte. This tutorial will walk you through deploying Marmotte using Docker, a platform that simplifies software deployment in containers. By the end of this guide, you'll have Marmotte running in a Docker container on your machine.
+
+## Prerequisites
+
+Before we start, ensure you have:
+
+1. **Docker** installed on your machine. If you haven't, visit [Docker's official website](https://www.docker.com/get-started) to download and install it.
+2. Basic familiarity with terminal or command prompt commands.
+
+## Steps to Deploy
+
+### 1. Pull the Marmotte Docker Image
+
+Open your terminal or command prompt and execute the following command:
+
+```bash
+docker pull marmotteio/marmotteio:latest
+```
+
+This command will download the latest Marmotte image from Docker Hub.
+
+### 2. Run Marmotte in a Docker Container
+
+After the image is successfully pulled, run the following command:
+
+```bash
+docker run -d -p 5959:8000 \
+    --name marmotteio \
+    -e APP_NAME=Marmotte.io \
+    -e APP_ENV=local \
+    -e APP_DEBUG=true \
+    -e APP_URL=http://0.0.0.0:5959 \
+    -e DB_CONNECTION=sqlite \
+    -e DB_DATABASE=/app/marmotte.sqlite \
+    -e DB_FOREIGN_KEYS=true \
+    -v $(pwd):/app \
+    marmotteio/marmotteio:latest
+```
+
+After the Docker container is running, you can open your favorite browser and head over to:
+
+```bash
+http://localhost:5959
+```
+
+And that's it! You now have Marmotte running in a Docker container on your machine. This method is especially useful for quick deployments, testing, or even for production scenarios if configured properly.
+
+Note: Do remember to adjust the Docker command as per your requirements, particularly if you need to pass in environment variables, link to databases, or make any other configuration changes.
+
+### Viewing Logs and Managing the Docker Container
+
+Once Marmotte is running within a Docker container, there might be scenarios where you need to view logs in real-time, or you might want to stop the container. Here's how you can do that:
+
+To tail the logs in real-time for your running container, use the following command:
+
+```bash
+docker logs -f marmotteio
+```
+
+To stop the Marmotte Docker container:
+
+```bash
+docker stop marmotteio
+```

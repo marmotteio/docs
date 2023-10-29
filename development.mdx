@@ -1,98 +1,72 @@
 ---
 title: 'Development'
-description: 'Learn how to preview changes locally'
+description: 'Learn how to preview changes locally.'
 ---
 
-<Info>
-  **Prerequisite** You should have installed Node.js (version 18.10.0 or
-  higher).
-</Info>
+## Running with Laravel Sail
 
-Step 1. Install Mintlify on your OS:
+Marmotte utilizes Docker for easy setup and deployment via Laravel Sail, a light-weight command-line interface for interacting with Laravel's default Docker development environment. To get started, ensure you have Docker and Docker Compose installed on your system.
 
-<CodeGroup>
+Before installing Marmotte, please make sure that no other web servers or databases are running on your local machine.
 
-```bash npm
-npm i -g mintlify
-```
+1. **Clone this repository to your local machine.**
+    ```
+    git clone https://github.com/marmotteio/marmotteio.git
+    ```
 
-```bash yarn
-yarn global add mintlify
-```
+2. **Navigate to the project directory.**
+    ```
+    cd marmotteio
+    ```
 
-</CodeGroup>
+3. **Start the Docker environment.**
 
-Step 2. Go to the docs are located (where you can find `mint.json`) and run the following command:
+    Laravel Sail provides a convenient method for starting and managing the Docker services defined by your application's `docker-compose.yml` file. You may start the Docker environment using the `sail up` command:
 
-```bash
-mintlify dev
-```
+    ```
+    ./vendor/bin/sail up
+    ```
 
-The documentation website is now available at `http://localhost:3000`.
+    The first time you run the Sail `up` command, Sail's Docker images will be built on your machine. This could take several minutes. Subsequent attempts to start Sail will be much faster.
 
-### Custom Ports
+    Sail publishes various services on standard ports on your system. For example, Laravel is accessible on port `80`. Therefore, you may access the project in your web browser at: `http://localhost`.
 
-Mintlify uses port 3000 by default. You can use the `--port` flag to customize the port Mintlify runs on. For example, use this command to run in port 3333:
+4. **Visit `localhost` in your browser to access Marmotte.**
 
-```bash
-mintlify dev --port 3333
-```
+   After the Docker containers are running, navigate to `http://localhost` in your web browser. You should see the Marmotte application running.
 
-You will see an error like this if you try to run Mintlify in a port that's already taken:
+## Tech stack
 
-```md
-Error: listen EADDRINUSE: address already in use :::3000
-```
+Marmotte is built with the following technologies:
 
-## Mintlify Versions
+- [Laravel 10](https://laravel.com): A robust framework for web artisans.
+- [PHP 8.3](https://www.php.net): A popular general-purpose scripting language that is especially suited to web development.
 
-Each CLI is linked to a specific version of Mintlify. Please update the CLI if your local website looks different than production.
+Additional PHP packages used in Marmotte:
 
-<CodeGroup>
+- [flowframe/laravel-trend](https://github.com/flowframe/laravel-trend): Provides trendline functionality in Laravel.
+- [guzzlehttp/guzzle](https://github.com/guzzle/guzzle): A PHP HTTP client and framework for building RESTful web service clients.
+- [laravel/sanctum](https://laravel.com/docs/8.x/sanctum): Laravel Sanctum provides a featherweight authentication system for SPAs and simple APIs.
+- [laravel/tinker](https://github.com/laravel/tinker): A REPL for Laravel.
+- [league/flysystem-aws-s3-v3](https://github.com/thephpleague/flysystem-aws-s3-v3): An AWS S3 adapter for Flysystem.
+- [livewire/livewire](https://github.com/livewire/livewire): A full-stack framework for Laravel that makes building dynamic interfaces simple, without leaving the comfort of Laravel.
+- [predis/predis](https://github.com/nrk/predis): A flexible and feature-complete Redis client for PHP.
+- [rackbeat/laravel-ui-avatars](https://github.com/rackbeat/laravel-ui-avatars): Generate avatars on the fly in Laravel.
+- [spatie/laravel-backup](https://github.com/spatie/laravel-backup): A package to backup your Laravel app.
+- [spatie/laravel-discord-alerts](https://github.com/spatie/laravel-discord-alerts): Send alerts to Discord from a Laravel app.
 
-```bash npm
-npm i -g mintlify@latest
-```
+Development dependencies include tools such as PHPUnit for testing, Laravel Sail for managing the Docker environment, and Faker for generating fake data.
 
-```bash yarn
-yarn global upgrade mintlify
-```
+Please refer to the `composer.json` file for the full list of dependencies.
 
-</CodeGroup>
+## Database Compatibility
 
-## Deployment
+Marmotte is compatible with multiple database systems to cater to various deployment needs. Out of the box, Marmotte supports:
 
-<Tip>
-  Unlimited editors available under the [Startup
-  Plan](https://mintlify.com/pricing)
-</Tip>
+-   SQLite: A lightweight, serverless database, ideal for development, testing, or small deployments. With SQLite, the database is stored as a file, making it easy to set up without any additional database server configuration.
 
-You should see the following if the deploy successfully went through:
+-   MySQL: One of the most popular open-source relational database systems. It's well-suited for production environments, offering robust performance, reliability, and a wide range of features.
 
-<Frame>
-  <img src="/images/checks-passed.png" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+-   PostgreSQL (pgsql): An advanced open-source database system known for its extensibility, standards compliance, and performance. PostgreSQL is a great choice for complex applications that require advanced data types and powerful query capabilities.
 
-## Troubleshooting
-
-Here's how to solve some common problems when working with the CLI.
-
-<AccordionGroup>
-  <Accordion title="Mintlify is not loading">
-    Update to Node v18. Run `mintlify install` and try again.
-  </Accordion>
-  <Accordion title="No such file or directory on Windows">
-Go to the `C:/Users/Username/.mintlify/` directory and remove the `mint`
-folder. Then Open the Git Bash in this location and run `git clone
-https://github.com/mintlify/mint.git`.
-
-Repeat step 3.
-
-  </Accordion>
-  <Accordion title="Getting an unknown error">
-    Try navigating to the root of your device and delete the ~/.mintlify folder.
-    Then run `mintlify dev` again.
-  </Accordion>
-</AccordionGroup>
-
-Curious about what changed in a CLI version? [Check out the CLI changelog.](/changelog/command-line)
+When deploying Marmotte, you can choose the database that aligns best with your requirements and infrastructure. Configuration details, such as connection strings and environment variables, can be adjusted accordingly in the application settings.
