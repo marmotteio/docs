@@ -1,0 +1,55 @@
+---
+title: SSO with SAML
+description: Implementing Single Sign-On (SSO) using SAML in Marmotte.
+---
+
+Single Sign-On (SSO) allows users to sign into multiple applications with a single set of credentials. Security Assertion Markup Language (SAML) is an open standard that facilitates this by transmitting authentication tokens between an identity provider (IdP) and a service provider (SP). Marmotte offers SAML-based SSO to enhance user convenience and security. Here's how to set it up:
+
+## **Prerequisites**
+Before you start, ensure you have:
+- Administrator access to Marmotte.
+- Access to an identity provider (IdP) like Okta, Auth0, or Azure AD.
+- SAML 2.0 details from your IdP.
+
+## **Step-by-step Guide**
+
+### 1. **Marmotte Configuration**
+
+1. **Access SSO Settings**: Navigate to the `Settings` menu in Marmotte and select `SSO/SAML Configuration`.
+2. **Enable SAML-based SSO**: Check the box to enable SSO using SAML.
+3. **Provide Configuration Details**: Here, you'll need to input the SAML details from your IdP, which typically include:
+   - `Entity ID`
+   - `Single Sign-On Service URL`
+   - `Single Logout Service URL`
+   - `x.509 Certificate`
+
+4. **Save the Configuration**: Once all details are provided, save the configuration.
+
+### 2. **IdP Configuration**
+
+The exact steps can vary based on your IdP. However, here is a general outline:
+
+1. **Create a New Application**: Go to your IdP's dashboard and create a new application for Marmotte.
+2. **Configuration**:
+   - Specify the `Assertion Consumer Service (ACS) URL`. This will typically be the endpoint where Marmotte expects to receive SAML assertions from the IdP.
+   - Specify the `Entity ID` or `Audience URI` which matches the one provided in Marmotte.
+   - Set the name ID format to `emailAddress`.
+
+3. **Assign Users/Groups**: Specify which users or groups should have access to Marmotte through SSO.
+
+### 3. **Test the SSO Setup**
+
+After both Marmotte and the IdP have been configured:
+
+1. Try accessing Marmotte. You should be redirected to your IdP's login page.
+2. After authenticating with the IdP, you should be seamlessly logged into Marmotte.
+
+## **Advantages of SSO with SAML in Marmotte**
+
+- **Convenience**: Users have fewer passwords to remember and manage.
+- **Enhanced Security**: Reduces the risks associated with password-related breaches.
+- **Centralized Authentication**: Manage and monitor authentications from a central location, making user management more streamlined.
+
+## **Conclusion**
+
+Integrating SSO with SAML in Marmotte not only provides a more seamless user experience but also elevates the platform's security standards. Ensure regular audits of the SSO setup to maintain its integrity and update configurations as needed.

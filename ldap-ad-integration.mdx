@@ -1,0 +1,57 @@
+---
+title: LDAP Integration
+description: Connecting Marmotte with LDAP for streamlined user authentication and management.
+---
+
+LDAP (Lightweight Directory Access Protocol) is a protocol used for accessing and managing directory information services. It's commonly used in many organizations for centralized user authentication and management. Integrating Marmotte with LDAP can streamline user management processes, ensuring that users have seamless access based on their organizational roles and permissions.
+
+## **Prerequisites**
+
+Before you start the LDAP integration:
+
+- Ensure you have administrator access to Marmotte.
+- Access to an LDAP server and knowledge of its configuration details.
+- Familiarize yourself with your organization's directory structure and user attributes.
+
+## **Step-by-step Guide**
+
+### 1. **Marmotte Configuration**
+
+1. **Access LDAP Settings**: In Marmotte, navigate to the `Settings` menu and select `LDAP Configuration`.
+2. **Provide Connection Details**:
+   - **Server**: Enter the address of your LDAP server.
+   - **Port**: Default is 389 for unsecured and 636 for secured. Change if your setup differs.
+   - **Use SSL/TLS**: Check this if your LDAP server uses a secured connection.
+
+3. **Directory Search Settings**:
+   - **Base DN (Distinguished Name)**: This is the starting point for the directory tree search.
+   - **Login Attribute**: The attribute used to match the login details, typically `uid` or `sAMAccountName`.
+   - **User Filter**: A filter to narrow down the search for users. E.g., `(objectClass=inetOrgPerson)`.
+
+4. **Bind Settings**:
+   - **Bind DN**: The distinguished name of the user Marmotte will use to connect to the LDAP server.
+   - **Bind Password**: Password for the above user.
+
+5. **Test Connection**: It's a good idea to test the connection to ensure everything is set up correctly.
+
+### 2. **Syncing Users**
+
+Once connected, Marmotte can sync users from LDAP. Specify the attributes you want to fetch (e.g., email, first name, last name). Scheduled syncs can be set up to ensure Marmotte's user data is always up-to-date with LDAP.
+
+### 3. **Group Mapping**
+
+You can map LDAP groups to Marmotte roles. This ensures that when a user logs in, they're assigned roles based on their group memberships in LDAP.
+
+### 4. **Test the Integration**
+
+Try logging into Marmotte using LDAP credentials. This will ensure the setup works as expected.
+
+## **Benefits of LDAP Integration**
+
+- **Unified Management**: Centralized user and role management.
+- **Enhanced Security**: Users have one less password to remember, reducing potential security risks.
+- **Automatic User Provisioning**: New users in the organization can automatically access Marmotte based on their LDAP group.
+
+## **Conclusion**
+
+LDAP integration in Marmotte provides organizations with an efficient means of user management and authentication, ensuring that the right users have the right access at all times.

@@ -25,28 +25,56 @@
     "name": "Dashboard",
     "url": "https://marmotte.io"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
   "anchors": [
+    {
+      "name": "API References",
+      "icon": "square-terminal",
+      "url": "api-reference"
+    },
+    {
+      "name": "FAQs",
+      "icon": "question",
+      "url": "faqs"
+    },
     {
       "name": "Community",
       "icon": "discord",
-      "url": "https://discord.gg/marmotteio"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://marmotte.io/blog"
+      "url": "https://discord.gg/2gsTsBXU"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quick-deploy", "development", "troubleshooting", "contributing", "code-of-conduct", "security"]
+      "pages": ["introduction", "development", "troubleshooting", "contributing", "code-of-conduct", "security"]
+    },
+    {
+      "group": "Deployment",
+      "pages": [ "quick-deploy", "marmotte-cloud"]
+    },
+
+    {
+      "group": "Advanced Features",
+      "pages": ["automation-rules", "webhooks", "bulk-import-export"]
+    },
+    {
+      "group": "Third-Party Integrations",
+      "pages": [ "ldap-ad-integration", "sso-saml", "github"]
+    },
+    {
+      "group": "Customization",
+      "pages": ["themes-branding", "custom-fields"]
+    },
+    {
+      "group": "Tutorials & Best Practices",
+      "pages": ["asset-tagging-best-practices", "effective-asset-lifecycle-management", "optimizing-asset-usage"]
+    },
+    {
+      "group": "FAQs & Common Issues",
+      "pages": ["faqs/frequently-asked-questions", "faqs/known-issues"]
+    },
+    {
+      "group": "Community & Support",
+      "pages": ["discord-community", "submitting-a-ticket", "feedback-and-suggestions"]
     },
     {
       "group": "API Documentation",
